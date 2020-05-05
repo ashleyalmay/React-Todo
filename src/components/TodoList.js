@@ -4,12 +4,13 @@ import React from 'react';
 import Todo from './Todo';
 
 const VillagerList = props => {
+  
   return (
     <div className="Favorite-list">
       {props.villagers.map(todo => (
-        <Todo key={todo.id} item={todo} />
+        <Todo key={todo.id} item={todo} toggleItem={props.toggleItem} />
       ))}
-      <button className="clear-btn" onClick={props.deleteVillagers(item.key)}>
+      <button className="clear-btn" onClick={props.deleteVillagers}>
       Delete Villager
       </button>
     </div>

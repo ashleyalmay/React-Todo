@@ -38,6 +38,7 @@ class ListForm extends React.Component {
           onChange={this.handleChanges}
           type="text"
           name="item"
+          placeholder="Enter Villager Here"
           value={this.state.keyword}
         />
         <button>Add Villager</button>

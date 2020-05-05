@@ -48,7 +48,6 @@ const villagers = [
         anotherStateProperty: "hello!"
       };
     }
-
     addVillager = villagerName => {
       
       const newVillager = {
@@ -61,15 +60,29 @@ const villagers = [
       });
     };
   
-    toggleItem = () => {};
-  
-    deleteVillagers = (key) => {
-      const filteredVillagers = this.state.villagers.filter(villagers => villagers.key!==key);
-      this.setState({
-        item:filteredVillagers
+    toggleItem = clickedID => {
+      const newList = this.state.villagers.map((item) => {
+        if (item.id === clickedID){
+          return {
+            ...item,
+            purchased: !item.purchased
+          }
+        } else {
+            return item;
+          }
+        });
+    this.setState({
+      villagers: newList
+    }); console.log(this.state)
+  };
 
-      })
-    };
+deleteVillagers  = () => {
+    this.setState(state => ({
+      villagers: state.villagers.filter(todo => !todo.purchased)
+    }));
+  };
+  
+  
   
 
     render() {
@@ -79,9 +92,7 @@ const villagers = [
             <h1>Animal Crossing Villager List!</h1>
             <TodoForm addVillager={this.addVillager} />
           </div>
-          <TodoList villagers={this.state.villagers}
-          deleteVillagers = {this.deleteVillagers} />
-
+          <TodoList villagers={this.state.villagers} toggleItem={this.toggleItem} deleteVillagers={this.deleteVillagers}/>
         </div>
       );
     }
